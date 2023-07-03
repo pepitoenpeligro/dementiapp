@@ -45,12 +45,12 @@ jobs:
 
       - name: Install CDK dependencies 
         working-directory: infrastructure/zones
-        run: 
+        run: |
           npm install
 
       - name: CDK deploy
         working-directory: infrastructure/zones
-        run: 
+        run: |
           ls -la
           cdk deploy --require-approval never -vv
 
