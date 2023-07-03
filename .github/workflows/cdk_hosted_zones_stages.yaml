@@ -5,7 +5,9 @@ on:
   push:
     paths:
       - infraestructure/zones/*
-    workflow_dispatch:
+  workflow_dispatch:
+
+        
 
 
 
