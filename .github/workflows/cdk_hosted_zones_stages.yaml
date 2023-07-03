@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - infraestructure/zones/*
-    # workflow_dispatch:
+    workflow_dispatch:
 
 
 
@@ -43,7 +43,7 @@ jobs:
         working-directory: infrastructure/zones
         run: 
           npm install
-          
+
       - name: CDK deploy
         working-directory: infrastructure/zones
         run: 
