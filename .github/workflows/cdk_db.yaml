@@ -1,10 +1,10 @@
-name: Deploy DEV and QA Public Hosted Zones
 
+name: Deploy Databases
 
 on: 
   push:
     paths:
-      - infraestructure/zones/*
+      - infraestructure/db/*
   workflow_dispatch:
 
         
@@ -49,6 +49,3 @@ jobs:
         run: |
           ls -la
           cdk deploy --require-approval never -vv
-
-
-    
