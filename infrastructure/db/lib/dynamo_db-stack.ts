@@ -1,26 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { App, Stack, RemovalPolicy } from "aws-cdk-lib";
-import {
-  RestApi,
-  EndpointType,
-  Cors,
-  AuthorizationType,
-  IdentitySource,
-  LambdaIntegration,
-  RequestAuthorizer,
-  MockIntegration,
-  IResource,
-  PassthroughBehavior,
-} from "aws-cdk-lib/aws-apigateway";
 
-import { AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
-import { Runtime } from "aws-cdk-lib/aws-lambda";
-import {
-  NodejsFunction,
-  NodejsFunctionProps,
-} from "aws-cdk-lib/aws-lambda-nodejs";
-import { join } from "path";
 
 export class DynamoDbStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
