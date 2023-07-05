@@ -1,5 +1,5 @@
 
-name: Deploy Databases
+name: Deploy Backend
 
 on: 
   push:
