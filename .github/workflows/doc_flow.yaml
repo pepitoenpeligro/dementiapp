@@ -24,7 +24,7 @@ jobs:
 
       - name: Setup Graphviz
         uses: ts-graphviz/setup-graphviz@v1
-        
+
       - name: Setup Diagrams 
         run: |
           pip install diagrams
@@ -34,10 +34,22 @@ jobs:
         working-directory: docs/diagrams
         run: |
             python flow.py 
+    
+      - name: Compile D2
+        working-directory: docs/d2
+        run: |
+          ls -1 | while read line ; do d2 $line ; done
+
+      - name: Move assets
+        working-directory: docs
+        run: |
+          mkdir assets
+          cp -r diagrams/*.png assets/
+          cp -r d2/*.svg assets/
 
       - name: Upload diagrams as artifact
         uses: actions/upload-artifact@v3
         with:
-            name: diagramsArtifact
-            path: docs/diagrams/dementiapp_realtime_analytics.png
+            name: diagramsArtifact.zip
+            path: docs/assets
             

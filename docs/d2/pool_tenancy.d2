@@ -1,0 +1,57 @@
+title: Multi / Pool Tenancy {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 64
+    # italic: true
+  }
+}
+
+
+
+compute: Shared Compute Resources {
+  shape: image
+
+  icon: https://icons.terrastruct.com/aws%2FCompute%2FCompute.svg
+  # style: {
+  #   font-size: 34
+  #   italic: true
+  # }
+}
+  
+
+tenanant1_lb: tenant 1{
+  lb1: {
+  shape: image
+  icon: https://icons.terrastruct.com/aws%2FNetworking%20&%20Content%20Delivery%2FElastic-Load-Balancing.svg
+  }
+}
+
+tenanant2_lb: tenant 2{
+  lb2: {
+    shape: image
+    icon: https://icons.terrastruct.com/aws%2FNetworking%20&%20Content%20Delivery%2FElastic-Load-Balancing.svg
+  }
+}
+
+
+tenanant3_lb: tenant 3{
+  lb3: {
+    shape: image
+    icon: https://icons.terrastruct.com/aws%2FNetworking%20&%20Content%20Delivery%2FElastic-Load-Balancing.svg
+  }
+}
+
+
+shared_db: Shared Data Base Resources{
+  db1: database {
+    shape: image
+    icon: https://icons.terrastruct.com/aws%2FDatabase%2FAmazon-RDS.svg
+  }
+}
+
+
+
+tenanant1_lb -> compute -> shared_db
+tenanant2_lb -> compute -> shared_db
+tenanant3_lb -> compute -> shared_db

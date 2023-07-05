@@ -1,0 +1,58 @@
+title: Flujo del Proceso de Selección {
+  shape: text
+  near: top-center
+  style: {
+    font-size: 84
+    # italic: true
+  }
+}
+
+t1: 1. Publicación de empleo {
+   shape: rectangle
+  icon: https://cdn-icons-png.flaticon.com/128/6864/6864261.png
+}
+t2: 2. Revisión de CVs  {shape: rectangle}
+t3: 3. Entrevistas iniciales {shape: rectangle}
+t4: 4. Pruebas técnicas \ny de habilidades {shape: rectangle}
+t5: 5. Entrevistas en profundidad {shape: rectangle} 
+t6: 6. Toma de decisión {shape: rectangle}
+
+# yes: yes
+no: descartado {
+  shape: page
+  icon: https://cdn-icons-png.flaticon.com/128/3688/3688600.png
+  style: {
+    font-size: 16
+    italic: true
+  }
+}
+
+bienvenido: Onboarding a DementiApp {
+  
+  shape: step
+  icon: https://cdn-icons-png.flaticon.com/128/748/748504.png
+  style: {
+    font-size: 24
+    # italic: true
+  }
+  
+}
+
+
+
+t1 -> t2
+t2-> no : no cumplen \nrequisitos básicos
+t2 -> t3 
+t3 -> no : no cumplen requisitos\n o no se adaptan al puesto
+
+t3 -> t4 
+t4 -> no : no pasan la prueba técnica
+t4 -> t5 
+t5 -> no : no se adaptan a \nla cultura de la empresa\n o no poseen habilidades\n técnicas avanzadas
+t5 -> t6
+
+t6 -> no : no aceptan la oferta \no los términos\n de la negociación
+
+t6-> bienvenido
+
+direction: down

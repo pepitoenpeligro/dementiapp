@@ -1,0 +1,101 @@
+title: Single / Silo Tenancy {
+    shape: text
+    near: top-center
+    style: {
+      font-size: 64
+      # italic: true
+    }
+  }
+  
+  tenant1: {
+    shape: rectangle
+    style: {
+      font-size: 24
+      italic: true
+    }
+  
+    lb1:{
+      shape: image
+      icon: https://icons.terrastruct.com/aws%2FNetworking%20&%20Content%20Delivery%2FElastic-Load-Balancing.svg
+    }
+  
+    compute1: {
+      shape: image
+      icon: https://icons.terrastruct.com/aws%2FCompute%2FCompute.svg
+      # style: {
+      #   font-size: 34
+      #   italic: true
+      # }
+    }
+  
+    db1:{
+      shape: image
+      icon: https://icons.terrastruct.com/aws%2FDatabase%2FAmazon-RDS.svg
+    }
+  
+    direction: down
+  
+    lb1 -> compute1 -> db1
+  }
+  
+  tenant2: {
+    shape: rectangle
+    style: {
+      font-size: 24
+      italic: true
+    }
+  
+    lb2:{
+      shape: image
+      icon: https://icons.terrastruct.com/aws%2FNetworking%20&%20Content%20Delivery%2FElastic-Load-Balancing.svg
+    }
+  
+    compute2: {
+      shape: image
+      icon: https://icons.terrastruct.com/aws%2FCompute%2FCompute.svg
+      # style: {
+      #   font-size: 34
+      #   italic: true
+      # }
+    }
+  
+    db2:{
+      shape: image
+      icon: https://icons.terrastruct.com/aws%2FDatabase%2FAmazon-RDS.svg
+    }
+  
+    direction: down
+  
+    lb2 -> compute2 -> db2
+  }
+  
+  tenant3: {
+    shape: rectangle
+    style: {
+      font-size: 24
+      italic: true
+    }
+  
+    lb3:{
+      shape: image
+      icon: https://icons.terrastruct.com/aws%2FNetworking%20&%20Content%20Delivery%2FElastic-Load-Balancing.svg
+    }
+  
+    compute3: {
+      shape: image
+      icon: https://icons.terrastruct.com/aws%2FCompute%2FCompute.svg
+      # style: {
+      #   font-size: 34
+      #   italic: true
+      # }
+    }
+  
+    db3:{
+      shape: image
+      icon: https://icons.terrastruct.com/aws%2FDatabase%2FAmazon-RDS.svg
+    }
+  
+    direction: down
+  
+    lb3 -> compute3 -> db3
+  }
