@@ -12,11 +12,14 @@ env:
     ARTIFAC_NAME: dementiapp.zip
     AMPLIFY_APP_NAME: dementiapp
 
+
+permissions:
+    id-token: write
+    contents: read
+      
 jobs:
     deploy:
-        permissions:
-            id-token: write
-            contents: read
+          
         runs-on: ubuntu-latest
 
         steps:
