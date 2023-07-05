@@ -45,8 +45,10 @@ jobs:
               with:
                 audience: 'sts.amazonaws.com'
                 aws-region: 'eu-west-1'
+                # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                # aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                 role-session-name: GitHubActions
-                role-to-assume: ${{ secrets.AWS_GITHUB_AMPLIFY_ROLE }}
+                role-to-assume: ${{ secrets.AWS_GITHUB_ROUTE53_ROLE }}
 
             # - name: Upload to private bucket
             #   run: |
