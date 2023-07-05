@@ -13,11 +13,11 @@ const backendStack = new CognitoStack(app, "dementiapp-backend-stack", {
   },
 });
 
-Aspects.of(app).add(new AwsSolutionsChecks());
-
 NagSuppressions.addStackSuppressions(
   backendStack,
   app.node.tryGetContext("cdk-nag-supressions")
 );
+
+Aspects.of(app).add(new AwsSolutionsChecks());
 
 app.synth();

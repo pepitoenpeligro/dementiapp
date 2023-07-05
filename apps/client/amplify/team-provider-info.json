@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-locationapp-staging-142738-authRole",
+      "UnauthRoleArn": "arn:aws:iam::030507416442:role/amplify-locationapp-staging-142738-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::030507416442:role/amplify-locationapp-staging-142738-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-locationapp-staging-142738-deployment",
+      "UnauthRoleName": "amplify-locationapp-staging-142738-unauthRole",
+      "StackName": "amplify-locationapp-staging-142738",
+      "StackId": "arn:aws:cloudformation:eu-west-1:030507416442:stack/amplify-locationapp-staging-142738/57756110-da07-11ed-933d-06a94e2b200b",
+      "AmplifyAppId": "d3gnz7560a72ck"
+    }
+  }
+}

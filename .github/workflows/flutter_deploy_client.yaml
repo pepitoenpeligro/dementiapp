@@ -1,0 +1,61 @@
+name: "Flutter deploy to AWS Amplify"
+
+on:
+    workflow_dispatch:
+    # push:
+    #   paths:
+    #     - 'lib/**'
+    #     - '.github/workflows/publish_amplify.yaml'
+
+env:
+    S3_BUCKET: location-web-app
+    ARTIFAC_NAME: location-web-app.zip
+    AMPLIFY_APP_NAME: Location
+
+jobs:
+    deploy:
+        permissions:
+            id-token: write
+            contents: read
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                fetch-depth: 1
+
+            - name: Create web artifact bundle
+              shell: bash
+              run: |
+                docker run -v `pwd`:/home/dementiapp --rm pepitoenpeligro/flutter-dev:latest bash -c "cd /home/dementiapp && flutter pub get && flutter build web"
+            
+            - name: Install zip
+              uses: montudor/action-zip@v1
+
+            - name: Compress web artifact bundle as zaip
+              run: zip -qq -r ../../$ARTIFAC_NAME ./*
+              working-directory: build/web
+
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v2
+              with:
+                audience: 'sts.amazonaws.com'
+                aws-region: eu-west-1
+                role-session-name: GitHubActions
+                role-to-assume: "${{ secrets.AWS_GITHUB_AMPLIFY_ROLE }}"
+                role-duration-seconds: 1500
+                mask-aws-account-id: true
+
+            - name: Upload to private bucket
+              run: |
+                aws s3 cp ./$ARTIFAC_NAME s3://$S3_BUCKET
+
+            - name: Start Deployment to Amplifyy
+              shell: bash
+              run: |
+                    AMPLIFY_APP_ID=$(aws amplify list-apps | jq -r --arg AMPLIFY_APP_NAME "$AMPLIFY_APP_NAME" '.apps[] | select((.name==$AMPLIFY_APP_NAME)) | .appId')
+                    AMPLIFY_APP_BRANCH=$(aws amplify list-apps | jq -r --arg AMPLIFY_APP_NAME "$AMPLIFY_APP_NAME" '.apps[] | select((.name==$AMPLIFY_APP_NAME)) | .productionBranch.branchName')
+                    aws amplify start-deployment \
+                    --app-id $AMPLIFY_APP_ID \
+                    --branch-name $AMPLIFY_APP_BRANCH \
+                    --source-url s3://$S3_BUCKET/$ARTIFAC_NAME

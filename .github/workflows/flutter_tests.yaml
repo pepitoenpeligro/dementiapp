@@ -1,0 +1,33 @@
+name: "Flutter Client Tests"
+
+on:
+    workflow_dispatch:
+#   push:
+#     paths:
+#       - '.github/workflows/launch_tests.yaml'
+#       - 'test/**'
+#       - 'lib/**'
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        container: 
+            image: pepitoenpeligro/flutter-dev:latest
+            options: --user root
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                submodules: 'recursive'
+                fetch-depth: 0
+
+            - name: Show Flutter
+              run: |
+                flutter --version
+
+            - name: Install dependencies
+              run: |
+                flutter pub get
+
+            - name: Launch tests
+              run: |
+                flutter test

@@ -1,0 +1,47 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-locationapp-staging-142738-authRole",
+      "UnauthRoleArn": "arn:aws:iam::030507416442:role/amplify-locationapp-staging-142738-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::030507416442:role/amplify-locationapp-staging-142738-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-locationapp-staging-142738-deployment",
+      "UnauthRoleName": "amplify-locationapp-staging-142738-unauthRole",
+      "StackName": "amplify-locationapp-staging-142738",
+      "StackId": "arn:aws:cloudformation:eu-west-1:030507416442:stack/amplify-locationapp-staging-142738/57756110-da07-11ed-933d-06a94e2b200b",
+      "AmplifyAppId": "d3gnz7560a72ck"
+    }
+  },
+  "api": {
+    "locationapp": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            }
+          }
+        },
+        "GraphQLAPIIdOutput": "mvgkdrfiqnhwxcbhljov4fvwdy",
+        "GraphQLAPIEndpointOutput": "https://hx6p3rjzlvdvlekil24yiikwtm.appsync-api.eu-west-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-hugcdz64xjgy5fbwjx6ubfuhr4"
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "lastPushTimeStamp": "2023-04-14T10:58:17.694Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-locationapp-staging-142738-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apilocationapp"
+      },
+      "lastPushDirHash": "1hso05tMWtXbcYs7/wTJ/HaZDIY="
+    }
+  }
+}

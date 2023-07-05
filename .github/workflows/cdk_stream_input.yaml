@@ -36,8 +36,7 @@ jobs:
           node-version: 18
   
       - name: Install CDK
-        run: |
-          npm install -g aws-cdk
+        uses: pepitoenpeligro/setup-cdk@v1
 
       - name: Install CDK dependencies 
         working-directory: infrastructure/streams/input 
