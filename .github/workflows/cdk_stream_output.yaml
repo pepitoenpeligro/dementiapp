@@ -1,0 +1,45 @@
+name: Deploy Stream output
+
+on:
+  push:
+    paths:
+      - infrastructure/streams/output/*
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          audience: "sts.amazonaws.com"
+          aws-region: "eu-west-1"
+          role-session-name: GitHubActions
+          role-to-assume: ${{ secrets.AWS_GITHUB_ROUTE53_ROLE }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install CDK
+        run: |
+          npm install -g aws-cdk
+
+      - name: Install CDK dependencies
+        working-directory: infrastructure/streams/output
+        run: npm install
+
+      - name: CDK deploy
+        working-directory: infrastructure/streams/output
+        run: |
+          ls -la
+          cdk deploy --require-approval never -vv
