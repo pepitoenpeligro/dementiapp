@@ -1,0 +1,40 @@
+name: Draw Diagrams
+
+on:
+#   push:
+#     paths:
+#       - infrastructure/analysis/*
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+
+      - name: Setup Diagrams 
+        run: |
+          pip install diagrams
+          curl -fsSL https://d2lang.com/install.sh | sh -s --
+
+      - name: Compile diagrams
+        working-directory: docs/diagrams
+        run: |
+            python flow.py 
+
+      - name: Upload diagrams as artifact
+        uses: actions/upload-artifact@v3
+        with:
+            name: diagramsArtifact
+            path: docs/diagrams/dementiapp_realtime_analytics.png
+            
