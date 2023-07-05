@@ -40,12 +40,12 @@ jobs:
           npm install -g aws-cdk
 
       - name: Install CDK dependencies 
-        working-directory: infraestructure/streams/input/
+        working-directory: infrastructure/streams/input 
         run: 
           npm install
 
       - name: CDK deploy
-        working-directory: infraestructure/streams/input/
+        working-directory: infrastructure/streams/input  
         run: |
           ls -la
           cdk deploy --require-approval never -vv
