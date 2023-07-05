@@ -34,7 +34,7 @@ jobs:
 
             - name: Compress web artifact bundle as zaip
               run: zip -qq -r ../../$ARTIFAC_NAME ./*
-              working-directory: build/web
+              working-directory: apps/client/build/web
 
             - name: Configure AWS Credentials
               uses: aws-actions/configure-aws-credentials@v2
