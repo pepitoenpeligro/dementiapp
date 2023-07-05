@@ -1,0 +1,28 @@
+# docker build -t flutterci $(cat .env.dockerfile.ci | sed 's@^@--build-arg @g' |  tr '\n' ' ' ) -f Dockerfile.ci . --no-cache
+
+#docker build -t flutterci --build-arg FLUTTER_VERSION=v1.16.3 -f Dockerfile.ci . --no-cache --progress=plain
+FROM --platform=linux/amd64 ubuntu:22.04
+
+LABEL author=pepitoenpeligro
+LABEL version=0.0.1
+
+ARG FLUTTER_VERSION
+
+RUN apt-get update && \
+    apt-get install -y bash git curl file unzip xz-utils zip libglu1-mesa && \
+    rm -rf /var/lib/apt/lists/* && \
+    groupadd -r -g 1441 flutter && useradd --no-log-init -r -u 1441 -g flutter -m flutter 
+
+USER flutter:flutter
+
+WORKDIR /home/flutter
+
+
+ENV PATH="$PATH:/home/flutter/sdk/bin"
+ENV PATH="$PATH:/home/flutter/sdk/bin/cache/dart-sdk/bin"
+
+
+RUN git clone https://github.com/flutter/flutter.git -b $FLUTTER_VERSION sdk && \ 
+    sdk/bin/flutter precache && \
+    sdk/bin/flutter config --no-analytics
+
