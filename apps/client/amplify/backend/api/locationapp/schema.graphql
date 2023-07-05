@@ -1,0 +1,8 @@
+type Notification @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  message: String
+  timestamp: String
+  userId: String
+}
+ 
