@@ -23,7 +23,7 @@ jobs:
           audience: "sts.amazonaws.com"
           aws-region: "eu-west-1"
           role-session-name: GitHubActions
-          role-to-assume: ${{ secrets.AWS_GITHUB_ROUTE53_ROLE }}
+          role-to-assume: ${{ secrets.AWS_GITHUB_ROLE }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
