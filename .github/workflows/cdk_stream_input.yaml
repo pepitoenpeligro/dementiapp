@@ -1,10 +1,10 @@
 
-name: Deploy Backend
+name: Deploy Stream Input
 
 on: 
   push:
     paths:
-      - infraestructure/db/*
+      - infraestructure/streams/input/*
   workflow_dispatch:
 
         
@@ -40,12 +40,12 @@ jobs:
           npm install -g aws-cdk
 
       - name: Install CDK dependencies 
-        working-directory: infrastructure/backend
+        working-directory: infraestructure/streams/input/
         run: 
           npm install
 
       - name: CDK deploy
-        working-directory: infrastructure/backend
+        working-directory: infraestructure/streams/input/
         run: |
           ls -la
           cdk deploy --require-approval never -vv
