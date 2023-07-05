@@ -39,7 +39,7 @@ jobs:
         with:
           tags: registry.hub.docker.com/pepitoenpeligro/flutter-dev:latest
           context: ./apps/client/
-          build-args: FLUTTER_VERSION=v3.10.5
+          build-args: FLUTTER_VERSION=stable
           file: apps/client/Dockerfile.development
           platforms: linux/amd64
           push: true
