@@ -1,95 +1,128 @@
-import { Aws } from 'aws-cdk-lib';
-import { Cors, EndpointType, IResource, LambdaIntegration, RestApi } from 'aws-cdk-lib/aws-apigateway';
-import { PolicyStatement, Effect } from 'aws-cdk-lib/aws-iam';
-import { Runtime } from 'aws-cdk-lib/aws-lambda';
-import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { Construct } from 'constructs';
+import { Aws } from "aws-cdk-lib";
+import {
+  Cors,
+  EndpointType,
+  IResource,
+  LambdaIntegration,
+  RestApi,
+} from "aws-cdk-lib/aws-apigateway";
+import { PolicyStatement, Effect } from "aws-cdk-lib/aws-iam";
+import { Runtime } from "aws-cdk-lib/aws-lambda";
+import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
+import { Construct } from "constructs";
 
 type AuthApiProps = {
-	userPoolId: string;
-	userPoolClientId: string;
+  userPoolId: string;
+  userPoolClientId: string;
 };
 
 export class AuthApi extends Construct {
-	private auth: IResource;
-	private userPoolId: string;
-	private userPoolClientId: string;
+  private auth: IResource;
+  private userPoolId: string;
+  private userPoolClientId: string;
 
-	constructor(scope: Construct, id: string, props: AuthApiProps) {
-		super(scope, id);
+  constructor(scope: Construct, id: string, props: AuthApiProps) {
+    super(scope, id);
 
-		({ userPoolId: this.userPoolId, userPoolClientId: this.userPoolClientId } = props);
+    ({ userPoolId: this.userPoolId, userPoolClientId: this.userPoolClientId } =
+      props);
 
-		const api = new RestApi(this, 'AuthServiceApi', {
-			description: 'Authentication Service RestApi',
-			endpointTypes: [EndpointType.REGIONAL],
-			defaultCorsPreflightOptions: {
-				allowOrigins: Cors.ALL_ORIGINS,
-			},
-		});
+    const api = new RestApi(this, "AuthServiceApi", {
+      description: "Authentication Service RestApi",
+      endpointTypes: [EndpointType.REGIONAL],
+      defaultCorsPreflightOptions: {
+        allowOrigins: Cors.ALL_ORIGINS,
+      },
+    });
 
-		this.auth = api.root.addResource('auth');
+    this.auth = api.root.addResource("auth");
 
-		const entry = './lambda/auth';
+    const entry = "./lambda/auth";
 
-		
+    this.addRoute(
+      "current_user",
+      "GET",
+      "CurrentUserFn",
+      `${entry}/current-user.ts`
+    );
+    this.addRoute("signout", "GET", "SignoutFn", `${entry}/signout.ts`);
+    this.addRoute(
+      "signup",
+      "POST",
+      "SignupFn",
+      `${entry}/signup.ts`,
+      true,
+      "cognito-idp:*"
+    );
+    this.addRoute(
+      "signin",
+      "POST",
+      "SigninFn",
+      `${entry}/signin.ts`,
+      true,
+      "cognito-idp:*"
+    );
+    this.addRoute(
+      "confirm_signup",
+      "POST",
+      "ConfirmFn",
+      `${entry}/confirm-signup.ts`,
+      true,
+      "cognito-idp:*"
+    );
+  }
 
-		this.addRoute('current_user', 'GET', 'CurrentUserFn', `${entry}/current-user.ts`);
-		this.addRoute('signout', 'GET', 'SignoutFn', `${entry}/signout.ts`);
-		this.addRoute('signup', 'POST', 'SignupFn', `${entry}/signup.ts`, true, 'cognito-idp:*');
-		this.addRoute('signin', 'POST', 'SigninFn', `${entry}/signin.ts`, true, 'cognito-idp:*');
-		this.addRoute('confirm_signup', 'POST', 'ConfirmFn', `${entry}/confirm-signup.ts`, true, 'cognito-idp:*');
-	}
+  private addRoute(
+    resourceName: string,
+    method: string,
+    fnName: string,
+    fnEntry: string,
+    allowCognitoAccess?: boolean,
+    actions?: string
+  ): void {
+    const commonFnProps = {
+      runtime: Runtime.NODEJS_16_X,
+      handler: "handler",
+      environment: {
+        USER_POOL_ID: this.userPoolId,
+        CLIENT_ID: this.userPoolClientId,
+      },
+    };
 
-	private addRoute(
-		resourceName: string,
-		method: string,
-		fnName: string,
-		fnEntry: string,
-		allowCognitoAccess?: boolean,
-		actions?: string,
-	): void {
-		const commonFnProps = {
-			runtime: Runtime.NODEJS_16_X,
-			handler: 'handler',
-			environment: {
-				USER_POOL_ID: this.userPoolId,
-				CLIENT_ID: this.userPoolClientId,
-			},
-		};
+    const resource = this.auth.addResource(resourceName);
 
-		const resource = this.auth.addResource(resourceName);
+    const fn = new NodejsFunction(this, fnName, {
+      ...commonFnProps,
+      functionName: fnName,
+      entry: fnEntry,
+    });
 
-		const fn = new NodejsFunction(this, fnName, {
-			...commonFnProps,
-			functionName: fnName,
-			entry: fnEntry,
-		});
+    if (allowCognitoAccess && actions) {
+      fn.addToRolePolicy(
+        new PolicyStatement({
+          effect: Effect.ALLOW,
+          actions: [actions],
+          resources: [
+            `arn:aws:cognito-idp:${Aws.REGION}:${Aws.ACCOUNT_ID}:userpool/${this.userPoolId}`,
+          ],
+        })
+      );
+    }
 
-		
+    if (fnName == "CurrentUserFn") {
+      fn.addToRolePolicy(
+        new PolicyStatement({
+          effect: Effect.ALLOW,
+          actions: [
+            "dynamodb:GetItem",
+            "dynamodb:PartiQLSelect",
+            "dynamodb:Query",
+          ],
+          resources: ["*"],
+        })
+      );
+    }
 
-		if (allowCognitoAccess && actions) {
-			fn.addToRolePolicy(
-				new PolicyStatement({
-					effect: Effect.ALLOW,
-					actions: [actions],
-					resources: [`arn:aws:cognito-idp:${Aws.REGION}:${Aws.ACCOUNT_ID}:userpool/${this.userPoolId}`],
-				})
-			);
-
-			
-
-			
-		}
-
-		if(fnName == "CurrentUserFn"){
-			fn.addToRolePolicy(new PolicyStatement({
-				effect: Effect.ALLOW,
-				actions: ["dynamodb:GetItem", "dynamodb:PartiQLSelect", "dynamodb:Query"],
-				resources: ["*"],
-			}))
-		}
-
-		resource.addMethod(method, new LambdaIntegration(fn));
-	}
+    resource.addMethod(method, new LambdaIntegration(fn));
+  }
 }
