@@ -15,10 +15,10 @@ jobs:
     
       - uses: actions/checkout@v3
   
-      - name: Get Arguments for Docker Build
-        run: |                    
-          DOCKER_ARGUMENTS=$(cat .env.dockerfile.development |  tr '\n' ' ')
-          echo "DOCKER_ARGUMENTS=$DOCKER_ARGUMENTS" >> $GITHUB_ENV
+    #   - name: Get Arguments for Docker Build
+    #     run: |                    
+    #       DOCKER_ARGUMENTS=$(cat .env.dockerfile.development |  tr '\n' ' ')
+    #       echo "DOCKER_ARGUMENTS=$DOCKER_ARGUMENTS" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -39,7 +39,7 @@ jobs:
         with:
           tags: registry.hub.docker.com/pepitoenpeligro/flutter-dev:latest
           context: ./apps/client/
-          build-args: ${{ env.DOCKER_ARGUMENTS }}
+          build-args: FLUTTER_VERSION=v3.10.5
           file: apps/client/Dockerfile.development
           platforms: linux/amd64
           push: true
