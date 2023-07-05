@@ -32,4 +32,4 @@ jobs:
             - name: Launch tests
               working-directory: apps/client
               run: |
-                flutter test
+                flutter test --no-sound-null-safety
