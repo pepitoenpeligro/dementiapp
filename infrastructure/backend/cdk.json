@@ -1,0 +1,92 @@
+{
+  "app": "npx ts-node --prefer-ts-exts bin/backend.ts",
+  "watch": {
+    "include": ["**"],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "**/*.d.ts",
+      "**/*.js",
+      "tsconfig.json",
+      "package*.json",
+      "yarn.lock",
+      "node_modules",
+      "test"
+    ]
+  },
+  "context": {
+    "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
+    "@aws-cdk/core:checkSecretUsage": true,
+    "@aws-cdk/core:target-partitions": ["aws", "aws-cn"],
+    "cdk-nag-supressions": [
+      {
+        "id": "AwsSolutions-COG1",
+        "reason": "The Cognito user pool does not have a password policy that minimally specify a password length of at least 8 characters, as well as requiring uppercase, numeric, and special characters."
+      },
+      {
+        "id": "AwsSolutions-COG2",
+        "reason": "The Cognito user pool does not require MFA."
+      },
+      {
+        "id": "AwsSolutions-COG3",
+        "reason": "The Cognito user pool does not have AdvancedSecurityMode set to ENFORCED."
+      },
+      {
+        "id": "AwsSolutions-IAM4",
+        "reason": "The Cognito user pool does not have AdvancedSecurityMode set to ENFORCED."
+      },
+      {
+        "id": "AwsSolutions-IAM5",
+        "reason": "The Cognito user pool does not have AdvancedSecurityMode set to ENFORCED."
+      },
+      {
+        "id": "AwsSolutions-L1",
+        "reason": "The Cognito user pool does not have AdvancedSecurityMode set to ENFORCED."
+      },
+      {
+        "id": "AwsSolutions-APIG2",
+        "reason": "The REST API does not have request validation enabled."
+      },
+      {
+        "id": "AwsSolutions-APIG1",
+        "reason": "The API does not have access logging enabled."
+      },
+      {
+        "id": "AwsSolutions-APIG3",
+        "reason": "The REST API stage is not associated with AWS WAFv2 web ACL."
+      },
+
+      {
+        "id": "AwsSolutions-APIG4",
+        "reason": "The API does not implement authorization."
+      },
+
+      {
+        "id": "AwsSolutions-APIG6",
+        "reason": "The REST API Stage does not have CloudWatch logging enabled ,for all methods."
+      },
+
+      {
+        "id": "AwsSolutions-COG4",
+        "reason": "The API GW method does not use a Cognito user pool authorizer."
+      }
+    ],
+    "@aws-cdk-containers/ecs-service-extensions:enableDefaultLogDriver": true,
+    "@aws-cdk/aws-ec2:uniqueImdsv2TemplateName": true,
+    "@aws-cdk/aws-ecs:arnFormatIncludesClusterName": true,
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:validateSnapshotRemovalPolicy": true,
+    "@aws-cdk/aws-codepipeline:crossAccountKeyAliasStackSafeResourceName": true,
+    "@aws-cdk/aws-s3:createDefaultLoggingPolicy": true,
+    "@aws-cdk/aws-sns-subscriptions:restrictSqsDescryption": true,
+    "@aws-cdk/aws-apigateway:disableCloudWatchRole": true,
+    "@aws-cdk/core:enablePartitionLiterals": true,
+    "@aws-cdk/aws-events:eventsTargetQueueSameAccount": true,
+    "@aws-cdk/aws-iam:standardizedServicePrincipals": true,
+    "@aws-cdk/aws-ecs:disableExplicitDeploymentControllerForCircuitBreaker": true,
+    "@aws-cdk/aws-iam:importedRoleStackSafeDefaultPolicyName": true,
+    "@aws-cdk/aws-s3:serverAccessLogsUseBucketPolicy": true,
+    "@aws-cdk/aws-route53-patters:useCertificate": true,
+    "@aws-cdk/customresources:installLatestAwsSdkDefault": false
+  }
+}
