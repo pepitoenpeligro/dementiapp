@@ -36,7 +36,7 @@ jobs:
           node-version: 18
   
       - name: Install CDK
-        uses: pepitoenpeligro/setup-cdk@master
+        uses: pepitoenpeligro/setup-cdk@v1
 
       - name: Install CDK dependencies 
         working-directory: infrastructure/streams/input 
