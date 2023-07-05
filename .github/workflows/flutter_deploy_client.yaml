@@ -1,4 +1,4 @@
-name: "Flutter deploy to AWS Amplify"
+name: "Flutter Deploy Web Amplify"
 
 on:
     workflow_dispatch:
