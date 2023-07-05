@@ -51,6 +51,7 @@ jobs:
                 role-to-assume: ${{ secrets.AWS_GITHUB_ROUTE53_ROLE }}
 
             - name: Upload to private bucket
+              working-directory: apps/client/build/web
               run: |
                 aws s3 cp ./$ARTIFAC_NAME s3://$S3_BUCKET
 
