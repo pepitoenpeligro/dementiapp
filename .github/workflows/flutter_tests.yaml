@@ -25,9 +25,11 @@ jobs:
                 flutter --version
 
             - name: Install dependencies
+              working-directory: apps/client
               run: |
                 flutter pub get
 
             - name: Launch tests
+              working-directory: apps/client
               run: |
                 flutter test
