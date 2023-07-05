@@ -2,3 +2,5 @@
 node_modules/
 cdk.out/
 build/
+apps/client/.flutter-plugins
+apps/client/.flutter-plugins-dependencies
