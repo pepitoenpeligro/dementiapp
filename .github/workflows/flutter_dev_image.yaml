@@ -39,9 +39,9 @@ jobs:
         working-directory: apps/client
         with:
           tags: registry.hub.docker.com/pepitoenpeligro/flutter-dev:latest
-          context: .
+          context: ./apps/client/
           build-args: ${{ env.DOCKER_ARGUMENTS }}
-          file: Dockerfile.development
+          file: apps/client/Dockerfile.development
           platforms: linux/amd64
           push: true
           
