@@ -36,15 +36,14 @@ jobs:
               run: zip -qq -r ../../$ARTIFAC_NAME ./*
               working-directory: apps/client/build/web
 
+    
             - name: Configure AWS Credentials
-              uses: aws-actions/configure-aws-credentials@v2
+              uses: aws-actions/configure-aws-credentials@v2 
               with:
                 audience: 'sts.amazonaws.com'
-                aws-region: eu-west-1
+                aws-region: 'eu-west-1'
                 role-session-name: GitHubActions
-                role-to-assume: "${{ secrets.AWS_GITHUB_AMPLIFY_ROLE }}"
-                role-duration-seconds: 1500
-                mask-aws-account-id: true
+                role-to-assume: ${{ secrets.AWS_GITHUB_AMPLIFY_ROLE }}
 
             - name: Upload to private bucket
               run: |
