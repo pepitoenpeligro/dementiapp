@@ -8,9 +8,9 @@ on:
     #     - '.github/workflows/publish_amplify.yaml'
 
 env:
-    S3_BUCKET: location-web-app
-    ARTIFAC_NAME: location-web-app.zip
-    AMPLIFY_APP_NAME: Location
+    S3_BUCKET: dementiapp
+    ARTIFAC_NAME: dementiapp.zip
+    AMPLIFY_APP_NAME: dementiapp
 
 jobs:
     deploy:
