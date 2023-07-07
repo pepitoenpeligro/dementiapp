@@ -4,6 +4,8 @@ from diagrams.aws.database import Redshift
 from diagrams.aws.integration import SQS, SNS, SimpleNotificationServiceSnsEmailNotification,SimpleNotificationServiceSnsTopic
 from diagrams.aws.storage import S3
 
+
+from diagrams.k8s.group import Namespace
 from diagrams.aws.analytics import Kinesis, KinesisDataAnalytics, KinesisDataStreams
 
 
@@ -15,7 +17,6 @@ with Diagram(name="DementiApp Realtime Analytics", show=True, direction="LR" ):
         topic = SNS("Anomaly Notification")
         # email = SimpleNotificationServiceSnsEmailNotification("Email")
         mobilePush = SimpleNotificationServiceSnsTopic("Push Notification")
-        
 
         with Cluster("Post Processing"):
             output = [Lambda("Fan Out"), KinesisDataStreams("OutputStream")] 

@@ -30,7 +30,7 @@ jobs:
             - name: Create web artifact bundle
               shell: bash
               run: |
-                docker run -v `pwd`/apps/client:/home/dementiapp --rm pepitoenpeligro/flutter-dev:latest bash -c "cd /home/dementiapp && flutter pub get && flutter build web --no-sound-null-safety --web-renderer canvaskit --release"
+                docker run -v `pwd`/apps/client:/home/dementiapp --rm pepitoenpeligro/flutter-dev:latest bash -c "cd /home/dementiapp && flutter pub get && flutter build web --no-sound-null-safety --web-renderer canvaskit"
             
             - name: Install zip
               uses: montudor/action-zip@v1

@@ -110,6 +110,7 @@ export class AnalyticsStack extends cdk.Stack {
       {
         runtime: cdk.aws_lambda.Runtime.PYTHON_3_8,
         handler: "fanout.handler",
+        functionName: "analytics-fan-out",
         code: cdk.aws_lambda.Code.fromAsset("lib/src"),
         environment: {
           TOPIC_ARN: abnormalNotificationTopic.topicArn,
@@ -170,5 +171,6 @@ export class AnalyticsStack extends cdk.Stack {
       );
 
     thresholdDetectorOutput.node.addDependency(thresholdDetector);
+    thresholdDetectorOutputKinesis.node.addDependency(thresholdDetector);
   }
 }
