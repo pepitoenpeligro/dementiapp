@@ -351,9 +351,9 @@ class _CreateAccountState extends State<CreateAccount> {
                                                     : 200),
                                             duration: const Duration(
                                                 milliseconds: 500),
-                                            child: Expanded(
+                                            child: 
                                               // color: Colors.amber,
-                                              child: Column(children: [
+                                              SingleChildScrollView(child: Column(children: [
                                                 Lottie.asset(
                                                     'assets/animations/searching.json'),
                                                 SizedBox(
@@ -367,8 +367,8 @@ class _CreateAccountState extends State<CreateAccount> {
                                                                 500
                                                             ? 0.8
                                                             : 2.2))
-                                              ]),
-                                            ),
+                                              ])),
+                                            
                                           ),
                                         ),
 
@@ -411,11 +411,13 @@ class _CreateAccountState extends State<CreateAccount> {
                                                     : 200),
                                             duration: const Duration(
                                                 milliseconds: 500),
-                                            child: Column(children: [
+                                            child: 
+                                            
+                                            SingleChildScrollView(child: Column(children: [
                                               Lottie.asset(
                                                   'assets/animations/lost.json'),
                                               SizedBox(
-                                                height: 4,
+                                                height: 3.6,
                                               ),
                                               Text(
                                                 'cared',
@@ -427,7 +429,8 @@ class _CreateAccountState extends State<CreateAccount> {
                                                         ? 0.8
                                                         : 2.2),
                                               )
-                                            ]),
+                                            ]),)
+                                            
                                           ),
                                         ),
                                         SizedBox(
