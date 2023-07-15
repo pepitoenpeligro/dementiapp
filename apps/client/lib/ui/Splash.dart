@@ -82,7 +82,8 @@ class _SplashPageState extends State<SplashPage> {
               SizedBox(
                 height: 200,
                 width: 200,
-                child: Column(children: [
+                child: 
+                Column(children: [
                   LottieBuilder.asset(
                       'assets/animations/ComposicionPepito.json',
                       width: 150,
@@ -95,22 +96,23 @@ class _SplashPageState extends State<SplashPage> {
                   // ),
                   Spacer(),
                   isIOS
-                      ? CupertinoActivityIndicator(
-                          radius: 35,
+                      ? Expanded(child:CupertinoActivityIndicator(
+                          radius: 15,
                           color: Theme.of(context)
                               .colorScheme
                               .secondary
                               .withOpacity(1),
-                        )
-                      : CircularProgressIndicator(
+                        ))
+                      : Expanded(child:CircularProgressIndicator(
                           strokeWidth: 2,
                           color: Theme.of(context)
                               .colorScheme
                               .secondary
                               .withOpacity(1),
-                        ),
-                ]),
+                        )),
+                ])
               )
+
               // Image.asset(
               //   'assets/images/icon-480.png',
               //   height: 30,

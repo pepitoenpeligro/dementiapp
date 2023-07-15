@@ -9,7 +9,12 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/amplify_api_android-1.0.0-next.8/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/amplify_flutter_android-1.0.0-next.8/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/amplify_secure_storage-0.3.0+2/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/connectivity_plus-3.0.4/android" />
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_android-4.1.7/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/package_info_plus-3.1.0/android" />
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.0.22/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />

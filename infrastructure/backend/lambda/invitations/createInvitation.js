@@ -1,6 +1,6 @@
 
 const AWS = require('aws-sdk');
-const uuid = require('uuid');
+// const uuid = require('uuid');
 
 const ddb = new AWS.DynamoDB({apiVersion: '2012-10-08'});
 const dynamoDocumentClient = new AWS.DynamoDB.DocumentClient();
@@ -28,7 +28,7 @@ const saveInvitation = async (userCaretaker, userCared) =>  {
     const params = {
         TableName: process.env.invitationsTable,
         Item: {
-            'invitationId': {'S':uuid.v4()},
+            'invitationId': {'S':AWS.util.uuid.v4()},
             'caretaker': {'S': userCaretaker.email},
             'cared': {'S':userCared.email},
             'createdAt': {'N': currentDate.getTime().toString()},

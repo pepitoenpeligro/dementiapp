@@ -5,7 +5,7 @@ import time
 
 header = {
     "Content-Type" : "application/json",
-    "Authorization": "eyJraWQiOiJSeHlrbE9SbmQ1MHV5b244SlkyWVZJVWVHZHR5RE9UY2RZYVMyZVlqWkxJPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJmNTQ5NzkzMS02MzQ5LTQzOWYtODgyMy1iYjgxODdiODA1YzIiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfTkF5QWRBYWRnIiwiY29nbml0bzp1c2VybmFtZSI6Impvc2UiLCJvcmlnaW5fanRpIjoiMzZjNjBlMzctMDcwOC00MzhiLWE1YTYtNGNkNzc5Y2UxOTI2IiwiYXVkIjoiMmNudHBvaTFoYjk5YmtmYnRhZTNpamU0Z2IiLCJldmVudF9pZCI6ImRmN2M0MzMxLTgzMTAtNGQ5YS05NGMxLTIyMjliOWVjOTQzYSIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjgxOTE2NTM1LCJleHAiOjE2ODE5MjAxMzQsImlhdCI6MTY4MTkxNjUzNSwianRpIjoiMThjZDc1ZGUtZDVjNC00YmJlLWFiZjEtMzRkZTBhZjM3ZGQ1IiwiZW1haWwiOiJqb3NlZXppb18zNUBob3RtYWlsLmNvbSJ9.y3JAq7wcIlXDZO537AEpUS0kDrfe99kZPhhK8lWFMbQWlZDr74aphCVeXI3gvyhjlh1Y1ANFArpJzhtSjxQiFXtR4BI_NUgtUj8s7mrmPR9zvr7CDXq9vm1YMjOKdJ08NvOFh8ttI1FF-VunpOeDtvh39nDOKbF6kIGa7HRiqUu_dMZNnkfQi2bCaeUKw22ypIuqiHeVyfi6X9QZ0tigNAa6ATuJolS9vpXIE4PDV0mDW6Ps9ZNRVwkVAtQOqMJycd3DSXWlv4j62LSkXCyg8BgnOBTTC6JvlB1VoZYLeUeVNNdmuPlFOFNHi9HC8rLp15YLVrhsz4Je5je1-DKWKg"
+    "Authorization": "eyJraWQiOiJSeHlrbE9SbmQ1MHV5b244SlkyWVZJVWVHZHR5RE9UY2RZYVMyZVlqWkxJPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0ZjIzMjkzMS03ZjY1LTQzNGQtYWJjMi0yZDZlOWZhZjU1MTkiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfTkF5QWRBYWRnIiwiY29nbml0bzp1c2VybmFtZSI6ImN1aWRhZG8iLCJvcmlnaW5fanRpIjoiZWQ3ZWI3YTItMDQwOC00YjkyLThlYzgtZWNmY2I2MTkyNzMyIiwiYXVkIjoiMmNudHBvaTFoYjk5YmtmYnRhZTNpamU0Z2IiLCJldmVudF9pZCI6ImI2MDc3NjUxLWExOGQtNDc4Ny04ZmViLWViZDdmZDUwMmYyMyIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjg4OTEzMTYxLCJleHAiOjE2ODg5MTY3NjEsImlhdCI6MTY4ODkxMzE2MSwianRpIjoiM2Q0MmI2MzEtM2Q4ZC00MjdlLTgyNDgtNGVhOGU2ZTkwODkxIiwiZW1haWwiOiJjdWlkYWRvQGRlbWVudGlhcHAuY29tIn0.wVpAU8aNosGe5pFtbbu2yEHdLX5TYszbR7khMKdTnLpaorvrnDkfn9yHqZcvtcFuuSrZWDyrAMSg2Gl61KX2giNSv4cmBD2wSbeBnS4tMJQ0n9JTK0PvolD2_IzFrbgOBuRPVToZ19EyObEeOLos7Fb5_QNQs3rdQp7ce6cLi4s697wmSKo5AEjKVCpmkCvrFA6Wx84q6cTdIF5c3LRx3pT4sZjyTvnDVCAHrmBSH-bLkl-pDc_gEtvSCn0_p1pKum7uKRNjBdtlzOd5lkj5dIaxr8ymZWwVS2MNzlKDcSW3GHxTFZa_m0B7PeaXlPbvrgblnxbxLeCTGizj4Wr_gA"
 }
 
 @dataclass
@@ -18,7 +18,7 @@ class Location:
     
 
 # with open("/Users/pp/Downloads/selected.csv", newline='') as csvfile:
-with open("/Users/pp/Desktop/albondon_beone.csv", newline='') as csvfile:
+with open("/Users/pp/Desktop/albondon_beone_v2.csv", newline='') as csvfile:
     reader = csv.reader(csvfile)
     next(reader)
     locations = []
@@ -32,7 +32,7 @@ with open("/Users/pp/Desktop/albondon_beone.csv", newline='') as csvfile:
 
 for location in locations:
     data = {
-        "userId": "d4a4fa59-b144-480f-ac5a-829dbd9484eb",
+        "userId": "da3b1187-90e7-48ed-984e-5bc0b20a9522",
         "location" : {
             "latitude": location.latitude,
             "longitude": location.longitude,
