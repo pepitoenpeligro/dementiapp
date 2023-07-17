@@ -2,11 +2,11 @@ name: "Flutter Custom Docker Image"
 
 on:
     workflow_dispatch:
-#   push:
-#     paths:
-#       - 'Dockerfile.development'
-#       - '.env.dockerfile.development'
-#       - '.github/workflows/build_development_image.yaml'
+    push:
+        paths:
+          - 'Dockerfile.development'
+          - '.env.dockerfile.development'
+          - '.github/workflows/build_development_image.yaml'
 
 jobs:
   buildimage:
@@ -14,11 +14,6 @@ jobs:
     steps:
     
       - uses: actions/checkout@v3
-  
-    #   - name: Get Arguments for Docker Build
-    #     run: |                    
-    #       DOCKER_ARGUMENTS=$(cat .env.dockerfile.development |  tr '\n' ' ')
-    #       echo "DOCKER_ARGUMENTS=$DOCKER_ARGUMENTS" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
