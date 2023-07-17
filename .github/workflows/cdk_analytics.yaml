@@ -1,11 +1,11 @@
 name: Deploy Kinesis Data Analytics 
 
 on:
-#   push:
-#     branches:
-#        - main
-#     paths:
-#       - infrastructure/analysis/*
+  push:
+    branches:
+      - main
+    paths:
+      - infrastructure/analysis/*
   workflow_dispatch:
 
 permissions:
